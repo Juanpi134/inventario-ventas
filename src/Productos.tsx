@@ -1,5 +1,8 @@
 import './Productos.css';
+import Header from './componentes/Header'; './componentes/Header'
 import { useState } from 'react';
+import ProductoModal from './componentes/ProductoModal';'./componentes/ProductoModal'
+import ConfirmacionModal from './componentes/ConfirmacionModal'; './componentes/ConfirmacionModal';
 
 type Producto = {
   id: number;
@@ -26,6 +29,7 @@ const [errorStock, setErrorStock] = useState("");
 
 
 const [mensajeExito, setMensajeExito] = useState("");
+const [productoAEliminar, setProductoAEliminar] = useState<Producto | null>(null);
 
     const [productos, setProductos] = useState([
   { id: 1, nombre: "Coca Cola", precio: 2000, stock: 20 }
@@ -134,9 +138,7 @@ const validar = () => {
 
     return <div>
 
-      <div className="header">
-        <h1>Productos</h1>
-      </div>
+      <Header titulo="Productos"></Header>
 
 {mensajeExito && (
                 <p className="success">{mensajeExito}</p>
@@ -162,6 +164,22 @@ const validar = () => {
         <div className="columna">Acciones</div>
     </div>
 
+{productos.length === 0 && (
+    <div className="fila">
+      <div className="columna">
+        No hay productos cargados
+      </div>
+    </div>
+  )}
+
+
+  {productos.length > 0 && productosFiltrados.length === 0 && (
+    <div className="fila">
+      <div className="columna">
+        No se encontraron resultados
+      </div>
+    </div>
+  )}
 
     
      {productosFiltrados.map((p) => (
@@ -171,7 +189,7 @@ const validar = () => {
       <div className="columna">{p.stock}</div>
 
         <div className='columna acciones'>
-            <button onClick={() => eliminarProducto(p.id)}>
+            <button onClick={() => setProductoAEliminar(p)}>
                 Eliminar
             </button>
 
@@ -185,37 +203,45 @@ const validar = () => {
 
 
 
+
     
     </div>
 
 
         {isModalOpen && (
-            <div className="modalOverlay">
-                <div className="modal">
-                    <h2>Nuevo Producto</h2>
-                    <input  placeholder="Nombre" value={nombre} onChange={(e) => setNombre(e.target.value)}/>
-                    {errorNombre && <p className="error">{errorNombre}</p>}
-                    <input type="number" placeholder="Precio" value={precio} onChange={(e) => setPrecio(e.target.value)}/>
-                    {errorPrecio && <p className="error">{errorPrecio}</p>}
-                    <input type="number" placeholder="Stock"  value={stock} onChange={(e) => setStock(e.target.value)}/>
-                    {errorStock && <p className="error">{errorStock}</p>}
+            <ProductoModal
+    nombre={nombre}
+    precio={precio}
+    stock={stock}
+    errorNombre={errorNombre}
+    errorPrecio={errorPrecio}
+    errorStock={errorStock}
+    productoEditando={productoEditando}
+    setNombre={setNombre}
+    setPrecio={setPrecio}
+    setStock={setStock}
+    guardarProducto={guardarProducto}
+    cerrarModal={() => setIsModalOpen(false)}
+  />
+)}
 
 
 
-                    <div className="modalActions">
-                        
-                        <button onClick={guardarProducto}>
-                            Guardar
-                      </button>
-                         <button onClick={() => setIsModalOpen(false)}>
-                            Cancelar
-                        </button>        
-                        </div>
-                </div>
-            </div>
+        {productoAEliminar && (
+  <ConfirmacionModal
+    mensaje={`¿Seguro que querés eliminar ${productoAEliminar.nombre}?`}
+    onConfirmar={() => {
+      setProductos(
+        productos.filter(
+          p => p.id !== productoAEliminar.id
+        )
+      );
 
-            
-        )}
+      setProductoAEliminar(null);
+    }}
+    onCancelar={() => setProductoAEliminar(null)}
+  />
+)}
 
 
     </div>
