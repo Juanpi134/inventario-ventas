@@ -1,0 +1,100 @@
+.header {
+  background: #333;
+  color: white;
+  padding: 10px;
+}
+
+
+.actions {
+  margin: 20px 0;
+}
+
+
+.content {
+  border: 1px solid #ccc;
+  padding: 10px;
+}
+
+.buscador{
+    margin-bottom: 20px;
+}
+
+
+.buscador input{
+    border-radius:10px;
+    width:20%;
+    padding:7px;
+    transition: all 0.2s ease;
+}
+
+.buscador input:focus{
+    border-color:#4f46e5;
+    box-shadow: 0 0 8px rgba(79,70,229,0.3);
+    outline:none;
+}
+
+.table{
+    display: flex;
+    flex-direction: column;
+    gap:8px;
+    border:2px solid black;
+}
+
+
+.fila{
+    display: flex;
+}
+
+
+.columna{
+    flex:1;
+    padding:10px;
+    border-top: 1px solid #ddd;
+}
+
+
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.modal {
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  border: 2px solid black;
+}
+
+
+.modal input {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+
+.modal button {
+  padding: 8px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+
+.modalActions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
