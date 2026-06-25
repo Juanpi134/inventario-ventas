@@ -38,12 +38,20 @@ const [productoAEliminar, setProductoAEliminar] = useState<Producto | null>(null
 const productosFiltrados = productos.filter((p) => p.nombre.toLowerCase().includes(search.toLowerCase()))
 
 
+const confirmarEliminacion = () => {
+  if (!productoAEliminar) return;
 
+  setProductos(
+    productos.filter(
+      p => p.id !== productoAEliminar.id
+    )
+  );
 
-
-const eliminarProducto = (id:number) => {
-  setProductos(productos.filter(p => p.id !== id));
+  setProductoAEliminar(null);
 };
+
+
+
 
 
 const editarProducto = (producto: Producto) => {
@@ -201,7 +209,13 @@ const validar = () => {
     </div>
   ))}
 
-
+{productoAEliminar && (
+  <ConfirmacionModal
+    mensaje={`¿Seguro que querés eliminar ${productoAEliminar.nombre}?`}
+    onConfirmar={confirmarEliminacion}
+    onCancelar={() => setProductoAEliminar(null)}
+  />
+)}
 
 
     
@@ -227,21 +241,6 @@ const validar = () => {
 
 
 
-        {productoAEliminar && (
-  <ConfirmacionModal
-    mensaje={`¿Seguro que querés eliminar ${productoAEliminar.nombre}?`}
-    onConfirmar={() => {
-      setProductos(
-        productos.filter(
-          p => p.id !== productoAEliminar.id
-        )
-      );
-
-      setProductoAEliminar(null);
-    }}
-    onCancelar={() => setProductoAEliminar(null)}
-  />
-)}
 
 
     </div>
