@@ -26,24 +26,6 @@ export default function Productos(){
 
 const productosFiltrados = productos.filter((p) => p.nombre.toLowerCase().includes(search.toLowerCase()))
 
-const agregarProducto = () => {
-  if (!nombre || !precio || !stock) return;
-
-  const nuevoProducto: Producto = {
-    id: Date.now(),
-    nombre,
-    precio: Number(precio),
-    stock: Number(stock)
-  };
-
-  setProductos([...productos, nuevoProducto]);
-
-  
-  setNombre("");
-  setPrecio("");
-  setStock("");
-  setIsModalOpen(false);
-};
 
 
 const eliminarProducto = (id:number) => {
@@ -58,6 +40,51 @@ const editarProducto = (producto: Producto) => {
   setStock(String(producto.stock));
   setIsModalOpen(true);
 };
+
+
+const guardarProducto = () => {
+
+  if (!nombre || !precio || !stock) return;
+
+  if (productoEditando) {
+
+    // EDITAR
+    setProductos(
+      productos.map((p) =>
+        p.id === productoEditando.id
+          ? {
+              ...p,
+              nombre,
+              precio: Number(precio),
+              stock: Number(stock)
+            }
+          : p
+      )
+    );
+
+  } else {
+
+    // CREAR
+    const nuevoProducto: Producto = {
+      id: Date.now(),
+      nombre,
+      precio: Number(precio),
+      stock: Number(stock)
+    };
+
+    setProductos([...productos, nuevoProducto]);
+  }
+
+  // LIMPIAR FORMULARIO
+  setNombre("");
+  setPrecio("");
+  setStock("");
+  setProductoEditando(null);
+  setIsModalOpen(false);
+};
+
+
+
     return <div>
 
       <div className="header">
@@ -119,7 +146,7 @@ const editarProducto = (producto: Producto) => {
                     <input placeholder="Stock"  value={stock} onChange={(e) => setStock(e.target.value)}/>
 
                     <div className="modalActions">
-                        <button onClick={agregarProducto}>
+                        <button onClick={guardarProducto}>
                             Guardar
                       </button>
 
