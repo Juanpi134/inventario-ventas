@@ -1,6 +1,13 @@
 import './Productos.css';
 import { useState } from 'react';
 
+type Producto = {
+  id: number;
+  nombre: string;
+  precio: number;
+  stock: number;
+};
+
 export default function Productos(){
 
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -10,6 +17,8 @@ export default function Productos(){
     const [precio, setPrecio] = useState("");
     const [stock, setStock] = useState("");
     const [search, setSearch] = useState("");
+    const [productoEditando, setProductoEditando] =
+  useState<Producto | null>(null);
 
     const [productos, setProductos] = useState([
   { id: 1, nombre: "Coca Cola", precio: 2000, stock: 20 }
@@ -20,7 +29,7 @@ const productosFiltrados = productos.filter((p) => p.nombre.toLowerCase().includ
 const agregarProducto = () => {
   if (!nombre || !precio || !stock) return;
 
-  const nuevoProducto = {
+  const nuevoProducto: Producto = {
     id: Date.now(),
     nombre,
     precio: Number(precio),
@@ -29,12 +38,26 @@ const agregarProducto = () => {
 
   setProductos([...productos, nuevoProducto]);
 
+  
   setNombre("");
   setPrecio("");
   setStock("");
   setIsModalOpen(false);
 };
 
+
+const eliminarProducto = (id:number) => {
+  setProductos(productos.filter(p => p.id !== id));
+};
+
+
+const editarProducto = (producto: Producto) => {
+  setProductoEditando(producto);
+  setNombre(producto.nombre);
+  setPrecio(String(producto.precio));
+  setStock(String(producto.stock));
+  setIsModalOpen(true);
+};
     return <div>
 
       <div className="header">
@@ -67,6 +90,17 @@ const agregarProducto = () => {
       <div className="columna">{p.nombre}</div>
       <div className="columna">{p.precio}</div>
       <div className="columna">{p.stock}</div>
+
+        <div className='columna'>
+            <button onClick={() => eliminarProducto(p.id)}>
+                Eliminar
+            </button>
+
+            <button onClick={() => editarProducto(p)}>
+                Editar
+            </button>
+        </div>
+
     </div>
   ))}
 
