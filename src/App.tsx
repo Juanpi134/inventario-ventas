@@ -1,12 +1,22 @@
 import Productos from "./Productos";
 import Ventas from "./Ventas";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App(){
   return (
-    <div>
-      <Productos/>
-      <Ventas/>
-    </div>
+   <BrowserRouter>
+
+      <Routes>
+
+        <Route path="/" element={<Productos />} />
+
+        <Route path="/productos" element={<Productos />} />
+
+        <Route path="/ventas" element={<Ventas />} />
+
+      </Routes>
+
+    </BrowserRouter>
   )
 }
 
