@@ -9,12 +9,13 @@ export default function Productos(){
     const [nombre, setNombre] = useState("");
     const [precio, setPrecio] = useState("");
     const [stock, setStock] = useState("");
-
+    const [search, setSearch] = useState("");
 
     const [productos, setProductos] = useState([
   { id: 1, nombre: "Coca Cola", precio: 2000, stock: 20 }
 ]);
 
+const productosFiltrados = productos.filter((p) => p.nombre.toLowerCase().includes(search.toLowerCase()))
 
 const agregarProducto = () => {
   if (!nombre || !precio || !stock) return;
@@ -48,8 +49,9 @@ const agregarProducto = () => {
 
 
       <div className="buscador">
-        <input type="text" name="" id="" placeholder='Buscar'/>
+        <input type="text" name="" id="" placeholder='Buscar' value={search} onChange={(e) => setSearch(e.target.value)}/>
       </div>
+
 
     <div className="table">
        <div className="fila cabecera">
@@ -58,18 +60,19 @@ const agregarProducto = () => {
         <div className="columna">Stock</div>
     </div>
 
-{productos.map((p) => (
+
+    
+     {productosFiltrados.map((p) => (
     <div className="fila" key={p.id}>
-        <div className="columna">{p.nombre}</div>
-        <div className="columna">{p.precio}</div>
-        <div className="columna">{p.stock}</div>
+      <div className="columna">{p.nombre}</div>
+      <div className="columna">{p.precio}</div>
+      <div className="columna">{p.stock}</div>
     </div>
-))}
-    <div className="fila">
-        <div className="columna">Arroz</div>
-        <div className="columna">1500</div>
-        <div className="columna">15</div>
-    </div>
+  ))}
+
+
+
+    
     </div>
 
         {isModalOpen && (
