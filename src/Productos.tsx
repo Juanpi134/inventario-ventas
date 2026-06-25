@@ -20,6 +20,11 @@ export default function Productos(){
     const [productoEditando, setProductoEditando] =
   useState<Producto | null>(null);
 
+const [errorNombre, setErrorNombre] = useState("");
+const [errorPrecio, setErrorPrecio] = useState("");
+const [errorStock, setErrorStock] = useState("");
+
+
     const [productos, setProductos] = useState([
   { id: 1, nombre: "Coca Cola", precio: 2000, stock: 20 }
 ]);
@@ -44,7 +49,7 @@ const editarProducto = (producto: Producto) => {
 
 const guardarProducto = () => {
 
-  if (!nombre || !precio || !stock) return;
+  if (!validar || !nombre || !precio || !stock) return;
 
   if (productoEditando) {
 
@@ -83,6 +88,34 @@ const guardarProducto = () => {
   setIsModalOpen(false);
 };
 
+
+
+const validar = () => {
+  let valido = true;
+
+  if (!nombre) {
+    setErrorNombre("El nombre es obligatorio");
+    valido = false;
+  } else {
+    setErrorNombre("");
+  }
+
+  if (!precio || Number(precio) <= 0) {
+    setErrorPrecio("El precio debe ser mayor a 0");
+    valido = false;
+  } else {
+    setErrorPrecio("");
+  }
+
+  if (!stock || Number(stock) < 0) {
+    setErrorStock("El stock no puede ser negativo");
+    valido = false;
+  } else {
+    setErrorStock("");
+  }
+
+  return valido;
+};
 
 
     return <div>
@@ -143,9 +176,11 @@ const guardarProducto = () => {
                     <h2>Nuevo Producto</h2>
 
                     <input placeholder="Nombre" value={nombre} onChange={(e) => setNombre(e.target.value)}/>
+                    {errorNombre && <p className="error">{errorNombre}</p>}
                     <input placeholder="Precio" value={precio} onChange={(e) => setPrecio(e.target.value)}/>
+                    {errorNombre && <p className="error">{errorPrecio}</p>}
                     <input placeholder="Stock"  value={stock} onChange={(e) => setStock(e.target.value)}/>
-
+                    {errorNombre && <p className="error">{errorStock}</p>}
                     <div className="modalActions">
                         <button onClick={guardarProducto}>
                             Guardar
