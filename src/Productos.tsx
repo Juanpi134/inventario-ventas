@@ -108,6 +108,7 @@ const guardarProducto = () => {
         <div className="columna">Nombre</div>
         <div className="columna">Precio</div>
         <div className="columna">Stock</div>
+        <div className="columna">Acciones</div>
     </div>
 
 
@@ -118,7 +119,7 @@ const guardarProducto = () => {
       <div className="columna">{p.precio}</div>
       <div className="columna">{p.stock}</div>
 
-        <div className='columna'>
+        <div className='columna acciones'>
             <button onClick={() => eliminarProducto(p.id)}>
                 Eliminar
             </button>
