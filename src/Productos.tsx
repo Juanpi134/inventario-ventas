@@ -32,6 +32,14 @@ const [errorStock, setErrorStock] = useState("");
 const productosFiltrados = productos.filter((p) => p.nombre.toLowerCase().includes(search.toLowerCase()))
 
 
+console.log({
+  nombre,
+  precio,
+  stock,
+  errorNombre,
+  errorPrecio,
+  errorStock
+});
 
 const eliminarProducto = (id:number) => {
   setProductos(productos.filter(p => p.id !== id));
@@ -49,7 +57,7 @@ const editarProducto = (producto: Producto) => {
 
 const guardarProducto = () => {
 
-  if (!validar || !nombre || !precio || !stock) return;
+  if (!validar() || !nombre || !precio || !stock) return;
 
   if (productoEditando) {
 
@@ -175,12 +183,12 @@ const validar = () => {
                 <div className="modal">
                     <h2>Nuevo Producto</h2>
 
-                    <input placeholder="Nombre" value={nombre} onChange={(e) => setNombre(e.target.value)}/>
+                    <input  placeholder="Nombre" value={nombre} onChange={(e) => setNombre(e.target.value)}/>
                     {errorNombre && <p className="error">{errorNombre}</p>}
-                    <input placeholder="Precio" value={precio} onChange={(e) => setPrecio(e.target.value)}/>
-                    {errorNombre && <p className="error">{errorPrecio}</p>}
-                    <input placeholder="Stock"  value={stock} onChange={(e) => setStock(e.target.value)}/>
-                    {errorNombre && <p className="error">{errorStock}</p>}
+                    <input type="number" placeholder="Precio" value={precio} onChange={(e) => setPrecio(e.target.value)}/>
+                    {errorPrecio && <p className="error">{errorPrecio}</p>}
+                    <input type="number" placeholder="Stock"  value={stock} onChange={(e) => setStock(e.target.value)}/>
+                    {errorStock && <p className="error">{errorStock}</p>}
                     <div className="modalActions">
                         <button onClick={guardarProducto}>
                             Guardar
