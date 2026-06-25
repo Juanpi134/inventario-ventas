@@ -25,6 +25,8 @@ const [errorPrecio, setErrorPrecio] = useState("");
 const [errorStock, setErrorStock] = useState("");
 
 
+const [mensajeExito, setMensajeExito] = useState("");
+
     const [productos, setProductos] = useState([
   { id: 1, nombre: "Coca Cola", precio: 2000, stock: 20 }
 ]);
@@ -32,14 +34,8 @@ const [errorStock, setErrorStock] = useState("");
 const productosFiltrados = productos.filter((p) => p.nombre.toLowerCase().includes(search.toLowerCase()))
 
 
-console.log({
-  nombre,
-  precio,
-  stock,
-  errorNombre,
-  errorPrecio,
-  errorStock
-});
+
+
 
 const eliminarProducto = (id:number) => {
   setProductos(productos.filter(p => p.id !== id));
@@ -61,7 +57,6 @@ const guardarProducto = () => {
 
   if (productoEditando) {
 
-    // EDITAR
     setProductos(
       productos.map((p) =>
         p.id === productoEditando.id
@@ -77,7 +72,6 @@ const guardarProducto = () => {
 
   } else {
 
-    // CREAR
     const nuevoProducto: Producto = {
       id: Date.now(),
       nombre,
@@ -88,12 +82,24 @@ const guardarProducto = () => {
     setProductos([...productos, nuevoProducto]);
   }
 
-  // LIMPIAR FORMULARIO
+  // limpiar formulario
   setNombre("");
   setPrecio("");
   setStock("");
   setProductoEditando(null);
+
+  // mensaje primero
+  setMensajeExito(
+    productoEditando
+      ? "Producto actualizado correctamente"
+      : "Producto creado correctamente"
+  );
+
+  // cerrar modal después (mejor UX)
+  setTimeout(() => {
   setIsModalOpen(false);
+  setMensajeExito("");
+}, 2000)
 };
 
 
@@ -131,6 +137,10 @@ const validar = () => {
       <div className="header">
         <h1>Productos</h1>
       </div>
+
+{mensajeExito && (
+                <p className="success">{mensajeExito}</p>
+                    )}
 
       <div className="actions">
         <button onClick={() => setIsModalOpen(true)}>
@@ -178,29 +188,35 @@ const validar = () => {
     
     </div>
 
+
         {isModalOpen && (
             <div className="modalOverlay">
                 <div className="modal">
                     <h2>Nuevo Producto</h2>
-
                     <input  placeholder="Nombre" value={nombre} onChange={(e) => setNombre(e.target.value)}/>
                     {errorNombre && <p className="error">{errorNombre}</p>}
                     <input type="number" placeholder="Precio" value={precio} onChange={(e) => setPrecio(e.target.value)}/>
                     {errorPrecio && <p className="error">{errorPrecio}</p>}
                     <input type="number" placeholder="Stock"  value={stock} onChange={(e) => setStock(e.target.value)}/>
                     {errorStock && <p className="error">{errorStock}</p>}
+
+
+
                     <div className="modalActions">
+                        
                         <button onClick={guardarProducto}>
                             Guardar
                       </button>
-
                          <button onClick={() => setIsModalOpen(false)}>
                             Cancelar
                         </button>        
                         </div>
                 </div>
             </div>
+
+            
         )}
+
 
     </div>
 
