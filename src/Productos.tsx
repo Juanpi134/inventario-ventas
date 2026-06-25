@@ -3,6 +3,7 @@ import Header from './componentes/Header'; './componentes/Header'
 import { useState } from 'react';
 import ProductoModal from './componentes/ProductoModal';'./componentes/ProductoModal'
 import ConfirmacionModal from './componentes/ConfirmacionModal'; './componentes/ConfirmacionModal';
+import TablaProductos from './componentes/TablaProductos';
 
 type Producto = {
   id: number;
@@ -164,50 +165,11 @@ const validar = () => {
       </div>
 
 
-    <div className="table">
-       <div className="fila cabecera">
-        <div className="columna">Nombre</div>
-        <div className="columna">Precio</div>
-        <div className="columna">Stock</div>
-        <div className="columna">Acciones</div>
-    </div>
-
-{productos.length === 0 && (
-    <div className="fila">
-      <div className="columna">
-        No hay productos cargados
-      </div>
-    </div>
-  )}
-
-
-  {productos.length > 0 && productosFiltrados.length === 0 && (
-    <div className="fila">
-      <div className="columna">
-        No se encontraron resultados
-      </div>
-    </div>
-  )}
-
-    
-     {productosFiltrados.map((p) => (
-    <div className="fila" key={p.id}>
-      <div className="columna">{p.nombre}</div>
-      <div className="columna">{p.precio}</div>
-      <div className="columna">{p.stock}</div>
-
-        <div className='columna acciones'>
-            <button onClick={() => setProductoAEliminar(p)}>
-                Eliminar
-            </button>
-
-            <button onClick={() => editarProducto(p)}>
-                Editar
-            </button>
-        </div>
-
-    </div>
-  ))}
+   <TablaProductos
+  productos={productosFiltrados}
+  onEditar={editarProducto}
+  onEliminar={setProductoAEliminar}
+/>
 
 {productoAEliminar && (
   <ConfirmacionModal
@@ -218,11 +180,7 @@ const validar = () => {
 )}
 
 
-    
-    </div>
-
-
-        {isModalOpen && (
+   {isModalOpen && (
             <ProductoModal
     nombre={nombre}
     precio={precio}
@@ -239,11 +197,11 @@ const validar = () => {
   />
 )}
 
-
-
-
-
+    
     </div>
+
+
+     
 
     
 }
