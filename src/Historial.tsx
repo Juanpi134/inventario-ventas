@@ -23,28 +23,27 @@ export function Historial(){
         v.fecha.toLowerCase().includes(search.toLowerCase())
     );
 
-    return 
-(
-    <Layout>
+   return (
+        <Layout>
+            <Header
+                appName="Sistema de Inventario"
+                titulo="Historial de Ventas"
+            />
 
-<div>
-        <Header
-        appName="Sistema de Inventario"
-        titulo="Historial de Ventas"
-    />
+            <Buscador
+                search={search}
+                setSearch={setSearch}
+            />
 
-    <Buscador search={search}
-    setSearch={setSearch}
-/>
+            <TablaVentas
+                ventas={ventasFiltradas}
+                onVerDetalle={setVentaSeleccionada}
+            />
 
-    <TablaVentas ventas={ventasFiltradas}
-                onVerDetalle={setVentaSeleccionada}/>
-
-    <DetalleVentaModal
-    venta={ventaSeleccionada}
-    onClose={() => setVentaSeleccionada(null)}
-    />
-    </div>
-    </Layout>
-)
+            <DetalleVentaModal
+                venta={ventaSeleccionada}
+                onClose={() => setVentaSeleccionada(null)}
+            />
+        </Layout>
+    );
 }
