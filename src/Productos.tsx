@@ -4,13 +4,9 @@ import { useState } from 'react';
 import ProductoModal from './componentes/ProductoModal';'./componentes/ProductoModal'
 import ConfirmacionModal from './componentes/ConfirmacionModal'; './componentes/ConfirmacionModal';
 import TablaProductos from './componentes/TablaProductos';
+import type {Producto} from './types/Producto'
 
-type Producto = {
-  id: number;
-  nombre: string;
-  precio: number;
-  stock: number;
-};
+
 
 export default function Productos(){
 
