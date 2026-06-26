@@ -1,6 +1,5 @@
-.ventas-header{
-    color:blue;
-    background-color: #eee;
-    margin:0;
-    padding:10px;
+.header {
+  background: #333;
+  color: white;
+  padding: 10px;
 }
