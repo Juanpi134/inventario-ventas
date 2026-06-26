@@ -13,15 +13,30 @@ export default function Carrito({ carrito }: CarritoProps) {
     return (
         <div>
 
-            <h2>Carrito</h2>
+           <h2>🛒 Carrito</h2>
 
-            {carrito.map((p, index) => (
-                <div key={index}>
-                    {p.nombre} - ${p.precio}
-                </div>
-            ))}
+    {carrito.map((p, i) => (
+        <div className="carrito-item" key={i}>
 
-            <h3>Total: ${total}</h3>
+            <div className="carrito-info">
+                <strong>{p.nombre}</strong>
+                <span>${p.precio}</span>
+            </div>
+
+            <button className="btn-eliminar">
+                x
+            </button>
+
+        </div>
+    ))}
+
+    <div className="carrito-total">
+        Total: ${total}
+    </div>
+
+    <button className="btn-finalizar">
+        Finalizar venta
+    </button>
 
         </div>
     );
