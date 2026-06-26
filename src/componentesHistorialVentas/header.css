@@ -10,3 +10,12 @@
     border-radius: 10px;
     margin-bottom: 20px;
 }
+
+
+
+.header h1 {
+    font-size: 20px;
+    font-weight: 600;
+    margin: 0;
+    opacity: 0.8;
+}
