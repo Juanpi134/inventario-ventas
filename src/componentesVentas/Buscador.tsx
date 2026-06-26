@@ -12,7 +12,7 @@ export default function Buscador({
 
     return (
         <div className="buscador">
-
+            <span>🔍</span>
             <input
                 type="text"
                 placeholder="Buscar producto..."
