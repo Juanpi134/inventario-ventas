@@ -1,4 +1,5 @@
-import '../estilos/buscadorVentas.css'
+import './buscadorVentas.css';
+
 export default function Buscador(){
     return (
         <div className="buscador-ventas">
