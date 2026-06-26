@@ -68,3 +68,41 @@
 .btn-finalizar:hover {
     background-color: #4338ca;
 }
+
+
+
+.modalOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+
+    background: rgba(0,0,0,0.5);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modalExito {
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+
+    text-align: center;
+
+    animation: pop 0.2s ease-in-out;
+}
+
+@keyframes pop {
+    from {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
