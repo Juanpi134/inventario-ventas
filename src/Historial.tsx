@@ -3,6 +3,7 @@ import Buscador from "./componentesHistorialVentas/Buscador"
 import { useState,useEffect } from "react";
 import TablaVentas from './componentesHistorialVentas/TablaVentas';
 import type { Venta } from "./types/Venta";
+import DetalleVentaModal from "./componentesHistorialVentas/DetalleVentaModal";
 export function Historial(){
 
     const [search, setSearch] = useState("");
