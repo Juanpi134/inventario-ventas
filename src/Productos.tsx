@@ -96,20 +96,20 @@ const guardarProducto = () => {
     setProductos([...productos, nuevoProducto]);
   }
 
-  // limpiar formulario
+  
   setNombre("");
   setPrecio("");
   setStock("");
   setProductoEditando(null);
 
-  // mensaje primero
+  
   setMensajeExito(
     productoEditando
       ? "Producto actualizado correctamente"
       : "Producto creado correctamente"
   );
 
-  // cerrar modal después (mejor UX)
+  
   setTimeout(() => {
   setIsModalOpen(false);
   setMensajeExito("");

@@ -4,20 +4,28 @@
     align-items: flex-start;
 
     padding: 20px 30px;
-    background-color: #1f2937; /* gris oscuro elegante */
+    background-color: #1f2937; 
     color: white;
 
-    border-radius: 10px;
+    border-radius: 16px;
     margin-bottom: 20px;
+     box-shadow:0 6px 20px rgba(0,0,0,.08);
 }
 
 
 
 .header h1 {
-    font-size: 20px;
-    font-weight: 600;
-    margin: 0;
-    opacity: 0.8;
+    font-size:14px;
+
+    color:#3b82f6;
+
+    font-weight:600;
+
+    text-transform:uppercase;
+
+    letter-spacing:1px;
+
+    margin-bottom:10px;
 }
 
 
