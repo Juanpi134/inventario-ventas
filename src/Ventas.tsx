@@ -38,7 +38,17 @@ export default function Ventas(){
 
     const [ventaConfirmada, setVentaConfirmada] = useState(false);
 
-    
+    const finalizarVenta = () => {
+
+    if (carrito.length === 0) return;
+
+    // mostrar modal
+    setVentaConfirmada(true);
+
+    // vaciar carrito
+    setCarrito([]);
+};
+
 
     return <div>
      <Header
