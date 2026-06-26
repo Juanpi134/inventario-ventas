@@ -1,5 +1,6 @@
 import header from './estilos/header.css'
-import from './componentesVentas'
+
+
 import Buscador from "./componentesVentas/Buscador";
 export default function Ventas(){
     return <div>
