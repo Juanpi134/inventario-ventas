@@ -1,0 +1,12 @@
+.header {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    padding: 20px 30px;
+    background-color: #1f2937; /* gris oscuro elegante */
+    color: white;
+
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
