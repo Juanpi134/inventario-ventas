@@ -1,12 +1,12 @@
-#Juan Pablo Tocino
+# Sistema de Inventario
 
-#Sisteam de inventario
+## Juan Pablo Tocino
 
 Proyecto frontend desarrollado con React + TypeScript que simula un sistema de gestión de productos, ventas y historial.
 
+---
 
 ## 📌 Funcionalidades
-
 
 - CRUD de productos (crear, editar, eliminar)
 - Validación de formularios
@@ -17,7 +17,7 @@ Proyecto frontend desarrollado con React + TypeScript que simula un sistema de g
 - Detalle de cada venta en modal
 - Persistencia con localStorage
 
-
+---
 
 ## 🧱 Tecnologías utilizadas
 
@@ -27,17 +27,20 @@ Proyecto frontend desarrollado con React + TypeScript que simula un sistema de g
 - Vite
 - localStorage (simulación de backend)
 
+---
 
 ## 🔄 Flujo de la aplicación
 
 Productos → Ventas → Historial
 
+---
 
 ## 💾 Persistencia de datos
 
 - Productos guardados en localStorage
 - Ventas guardadas en localStorage
 
+---
 
 ## 🚀 Cómo ejecutar el proyecto
 
