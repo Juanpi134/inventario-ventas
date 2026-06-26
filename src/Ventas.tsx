@@ -75,7 +75,7 @@ useEffect(() => {
 <TablaProductosVenta productos={productosFiltrados}
                 onAgregar={agregarAlCarrito}/>
 
-                <Carrito carrito={carrito} />
+                <Carrito carrito={carrito} onFinalizar={finalizarVenta} />
 
 
                 {ventaConfirmada && (

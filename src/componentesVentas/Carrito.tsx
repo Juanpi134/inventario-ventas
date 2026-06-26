@@ -1,10 +1,13 @@
 import type {Producto} from '../types/Producto'
 import './carrito.css'
+
+
 type CarritoProps = {
     carrito: Producto[];
+    onFinalizar: () => void;
 };
 
-export default function Carrito({ carrito }: CarritoProps) {
+export default function Carrito({ carrito,onFinalizar }: CarritoProps) {
 
     const total = carrito.reduce(
         (acc, p) => acc + p.precio,
@@ -35,7 +38,7 @@ export default function Carrito({ carrito }: CarritoProps) {
         Total: ${total}
     </div>
 
-    <button className="btn-finalizar">
+    <button   className="btn-finalizar" onClick={onFinalizar}>
         Finalizar venta
     </button>
 
