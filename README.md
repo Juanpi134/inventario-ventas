@@ -76,4 +76,4 @@ npm run dev
 
 ## 🌐 Demo
 
-https://tu-app.vercel.app
+https://inventario-ventas-dbmz.vercel.app/
