@@ -1,4 +1,3 @@
-import type {Producto} from '../types/Producto'
 import type { ItemCarrito } from '../types/ItemCarrito';
 import './carrito.css'
 

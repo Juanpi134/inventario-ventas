@@ -11,7 +11,7 @@ export default function Ventas(){
     //estados
     const [search, setSearch] = useState("");
 
-    const [productos, setProductos] = useState(() => {
+    const [productos] = useState(() => {
     const data = localStorage.getItem("productos");
     return data ? JSON.parse(data) : [];
 });
