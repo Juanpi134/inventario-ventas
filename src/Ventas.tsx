@@ -6,31 +6,23 @@ import type {Producto} from './types/Producto'
 import Carrito from "./componentesVentas/Carrito";
 import { useEffect } from "react";
 import type {ItemCarrito} from './types/ItemCarrito'
+
 export default function Ventas(){
     //estados
     const [search, setSearch] = useState("");
 
-    const [productos, setProductos] = useState([
-        {
-            id: 1,
-            nombre: "Coca Cola",
-            precio: 2000,
-            stock: 20
-        },
-        {
-            id: 2,
-            nombre: "Arroz",
-            precio: 1500,
-            stock: 15
-        }
-    ]);
+    const [productos, setProductos] = useState(() => {
+    const data = localStorage.getItem("productos");
+    return data ? JSON.parse(data) : [];
+});
 
 
 const [carrito, setCarrito] = useState<ItemCarrito[]>([]);
 
-    const productosFiltrados = productos.filter((p) =>
+    const productosFiltrados = productos.filter((p:Producto) =>
         p.nombre.toLowerCase().includes(search.toLowerCase())
     );
+
 
 
     
