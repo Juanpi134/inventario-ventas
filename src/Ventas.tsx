@@ -77,6 +77,22 @@ useEffect(() => {
 
                 <Carrito carrito={carrito} />
 
+
+                {ventaConfirmada && (
+    <div className="modalOverlay">
+
+        <div className="modalExito">
+
+            <h2>✅ Venta realizada</h2>
+
+            <p>La operación se completó correctamente</p>
+
+        </div>
+
+    </div>
+)}
+
+
     </div>
 
     
