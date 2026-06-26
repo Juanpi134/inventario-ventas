@@ -36,6 +36,10 @@ export default function Ventas(){
 
     };
 
+    const [ventaConfirmada, setVentaConfirmada] = useState(false);
+
+    
+
     return <div>
      <Header
     appName="Sistema de Inventario"
