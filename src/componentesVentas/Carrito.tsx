@@ -1,4 +1,5 @@
 import type {Producto} from '../types/Producto'
+import './carrito.css'
 type CarritoProps = {
     carrito: Producto[];
 };
