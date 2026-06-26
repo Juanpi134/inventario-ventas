@@ -6,9 +6,10 @@ import './carrito.css'
 type CarritoProps = {
     carrito: ItemCarrito[];
     onFinalizar: () => void;
+    onEliminar: (id: number) => void;
 };
 
-export default function Carrito({ carrito,onFinalizar }: CarritoProps) {
+export default function Carrito({ carrito,onFinalizar,onEliminar }: CarritoProps) {
 
     const total = carrito.reduce(
     (acc, item) =>
@@ -32,7 +33,7 @@ export default function Carrito({ carrito,onFinalizar }: CarritoProps) {
                         ${item.producto.precio * item.cantidad}
                     </div>
 
-                    <button className="btn-eliminar">
+                    <button className="btn-eliminar" onClick={() => onEliminar(item.producto.id)}>
                         x
                     </button>
 

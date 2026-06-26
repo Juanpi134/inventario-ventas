@@ -33,11 +33,7 @@ const [carrito, setCarrito] = useState<ItemCarrito[]>([]);
     );
 
 
-    const total = carrito.reduce(
-    (acc, item) =>
-        acc + item.producto.precio * item.cantidad,
-    0
-);
+    
 
     const agregarAlCarrito = (producto: Producto) => {
 
@@ -94,6 +90,12 @@ useEffect(() => {
 }, [ventaConfirmada]);
 
 
+const eliminarDelCarrito = (id: number) => {
+    setCarrito(
+        carrito.filter(item => item.producto.id !== id)
+    );
+};
+
     return <div>
      <Header
     appName="Sistema de Inventario"
@@ -105,7 +107,7 @@ useEffect(() => {
 <TablaProductosVenta productos={productosFiltrados}
                 onAgregar={agregarAlCarrito}/>
 
-                <Carrito carrito={carrito} onFinalizar={finalizarVenta} />
+                <Carrito carrito={carrito} onFinalizar={finalizarVenta} onEliminar={eliminarDelCarrito} />
 
 
                 {ventaConfirmada && (
