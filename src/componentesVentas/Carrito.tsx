@@ -1,47 +1,57 @@
 import type {Producto} from '../types/Producto'
+import type { ItemCarrito } from '../types/ItemCarrito';
 import './carrito.css'
 
 
 type CarritoProps = {
-    carrito: Producto[];
+    carrito: ItemCarrito[];
     onFinalizar: () => void;
 };
 
 export default function Carrito({ carrito,onFinalizar }: CarritoProps) {
 
     const total = carrito.reduce(
-        (acc, p) => acc + p.precio,
-        0
-    );
+    (acc, item) =>
+        acc + item.producto.precio * item.cantidad,
+    0
+);
 
     return (
         <div>
 
            <h2>🛒 Carrito</h2>
 
-    {carrito.map((p, i) => (
-        <div className="carrito-item" key={i}>
+    {carrito.map(item => (
+                <div key={item.producto.id} className="carrito-item">
 
-            <div className="carrito-info">
-                <strong>{p.nombre}</strong>
-                <span>${p.precio}</span>
+                    <div>
+                        {item.producto.nombre} x{item.cantidad}
+                    </div>
+
+                    <div>
+                        ${item.producto.precio * item.cantidad}
+                    </div>
+
+                    <button className="btn-eliminar">
+                        x
+                    </button>
+
+                </div>
+            ))}
+
+            <div className="carrito-total">
+                Total: ${total}
             </div>
 
-            <button className="btn-eliminar">
-                x
+            <button
+                className="btn-finalizar"
+                onClick={onFinalizar}
+            >
+                Finalizar venta
             </button>
 
         </div>
-    ))}
-
-    <div className="carrito-total">
-        Total: ${total}
-    </div>
-
-    <button   className="btn-finalizar" onClick={onFinalizar}>
-        Finalizar venta
-    </button>
-
-        </div>
     );
+     
+   
 }

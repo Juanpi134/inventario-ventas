@@ -5,6 +5,7 @@ import { useState } from "react";
 import type {Producto} from './types/Producto'
 import Carrito from "./componentesVentas/Carrito";
 import { useEffect } from "react";
+import type {ItemCarrito} from './types/ItemCarrito'
 export default function Ventas(){
     //estados
     const [search, setSearch] = useState("");
@@ -25,17 +26,46 @@ export default function Ventas(){
     ]);
 
 
-    const [carrito, setCarrito] = useState<Producto[]>([]);
+const [carrito, setCarrito] = useState<ItemCarrito[]>([]);
 
     const productosFiltrados = productos.filter((p) =>
         p.nombre.toLowerCase().includes(search.toLowerCase())
     );
 
-    const agregarAlCarrito = (producto:Producto) => {
 
-        setCarrito([...carrito, producto]);
+    const total = carrito.reduce(
+    (acc, item) =>
+        acc + item.producto.precio * item.cantidad,
+    0
+);
 
-    };
+    const agregarAlCarrito = (producto: Producto) => {
+
+    const existe = carrito.find(
+        item => item.producto.id === producto.id
+    );
+
+    if (existe) {
+        setCarrito(
+            carrito.map(item =>
+                item.producto.id === producto.id
+                    ? {
+                        ...item,
+                        cantidad: item.cantidad + 1
+                    }
+                    : item
+            )
+        );
+    } else {
+        setCarrito([
+            ...carrito,
+            {
+                producto,
+                cantidad: 1
+            }
+        ]);
+    }
+};
 
     const [ventaConfirmada, setVentaConfirmada] = useState(false);
 
