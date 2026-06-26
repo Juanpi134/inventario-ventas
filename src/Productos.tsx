@@ -5,7 +5,7 @@ import ProductoModal from './componentes/ProductoModal';'./componentes/ProductoM
 import ConfirmacionModal from './componentes/ConfirmacionModal'; './componentes/ConfirmacionModal';
 import TablaProductos from './componentes/TablaProductos';
 import type {Producto} from './types/Producto'
-
+import { useEffect } from 'react';
 
 
 export default function Productos(){
@@ -28,9 +28,14 @@ const [errorStock, setErrorStock] = useState("");
 const [mensajeExito, setMensajeExito] = useState("");
 const [productoAEliminar, setProductoAEliminar] = useState<Producto | null>(null);
 
-    const [productos, setProductos] = useState([
-  { id: 1, nombre: "Coca Cola", precio: 2000, stock: 20 }
-]);
+    const [productos, setProductos] = useState<Producto[]>(() => {
+    const data = localStorage.getItem("productos");
+    return data ? JSON.parse(data) : [];
+});
+
+useEffect(() => {
+        localStorage.setItem("productos", JSON.stringify(productos));
+    }, [productos]);
 
 const productosFiltrados = productos.filter((p) => p.nombre.toLowerCase().includes(search.toLowerCase()))
 
