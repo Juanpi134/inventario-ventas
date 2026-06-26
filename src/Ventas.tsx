@@ -61,11 +61,34 @@ const [carrito, setCarrito] = useState<ItemCarrito[]>([]);
 
     if (carrito.length === 0) return;
 
-    // mostrar modal
-    setVentaConfirmada(true);
+    const nuevaVenta = {
+        id: Date.now(),
+        fecha: new Date().toLocaleString(),
+        productos: carrito,
+        total: carrito.reduce(
+            (acc, item) =>
+                acc + item.producto.precio * item.cantidad,
+            0
+        )
+    };
+
+    // traer ventas anteriores
+    const ventasGuardadas = JSON.parse(
+        localStorage.getItem("ventas") || "[]"
+    );
+
+    const nuevasVentas = [...ventasGuardadas, nuevaVenta];
+
+    localStorage.setItem(
+        "ventas",
+        JSON.stringify(nuevasVentas)
+    );
 
     // vaciar carrito
     setCarrito([]);
+
+    // mostrar confirmación UI
+    setVentaConfirmada(true);
 };
 
 
