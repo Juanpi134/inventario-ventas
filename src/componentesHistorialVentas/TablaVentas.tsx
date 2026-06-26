@@ -1,4 +1,6 @@
 import type { Venta } from '../types/Venta'
+import './table.css';
+
 
 type TablaVentasProps = {
     ventas: Venta[];

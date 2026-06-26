@@ -1,3 +1,5 @@
+import './header.css';
+
 type HeaderProps = {
     appName: string;
     titulo: string;

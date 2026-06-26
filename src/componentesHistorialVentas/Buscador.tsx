@@ -1,3 +1,5 @@
+import './buscadorHistorial.css';
+
 type BuscadorProps = {
     search: string;
     setSearch: (valor: string) => void;
