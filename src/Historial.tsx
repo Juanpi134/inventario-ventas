@@ -2,7 +2,7 @@ import Header from "./componentesHistorialVentas/Header"
 import Buscador from "./componentesHistorialVentas/Buscador"
 import { useState,useEffect } from "react";
 import TablaVentas from './componentesHistorialVentas/TablaVentas';
-
+import type { Venta } from "./types/Venta";
 export function Historial(){
 
     const [search, setSearch] = useState("");
@@ -33,6 +33,9 @@ export function Historial(){
     <TablaVentas ventas={ventasFiltradas}
                 onVerDetalle={setVentaSeleccionada}/>
 
-    <DetalleVentaModal />
+    <DetalleVentaModal
+    venta={ventaSeleccionada}
+    onClose={() => setVentaSeleccionada(null)}
+    />
     </div>
 }
