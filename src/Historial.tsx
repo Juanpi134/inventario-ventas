@@ -1,13 +1,20 @@
 import Header from "./componentesHistorialVentas/Header"
+import Buscador from "./componentesHistorialVentas/Buscador"
+import { useState } from "react";
 
 export function Historial(){
+
+    const [search, setSearch] = useState("");
+
     return <div>
         <Header
         appName="Sistema de Inventario"
         titulo="Historial de Ventas"
     />
 
-    <Buscador />
+    <Buscador search={search}
+    setSearch={setSearch}
+/>
 
     <TablaVentas />
 
