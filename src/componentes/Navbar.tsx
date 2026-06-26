@@ -8,6 +8,7 @@ export default function Navbar() {
 
       <Link to="/ventas">Ventas</Link>
 
+    <Link to="/historial">Historial</Link>
     </div>
   );
 }
