@@ -6,7 +6,7 @@ import ConfirmacionModal from './componentes/ConfirmacionModal'; './componentes/
 import TablaProductos from './componentes/TablaProductos';
 import type {Producto} from './types/Producto'
 import { useEffect } from 'react';
-
+import Layout from "./layouts/Layout";
 
 export default function Productos(){
 
@@ -146,7 +146,9 @@ const validar = () => {
 };
 
 
-    return <div>
+    return (
+      <Layout>
+    <div>
 
       <Header titulo="Productos"></Header>
 
@@ -201,7 +203,7 @@ const validar = () => {
     
     </div>
 
-
+</Layout>);
      
 
     

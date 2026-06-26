@@ -6,6 +6,7 @@ import type {Producto} from './types/Producto'
 import Carrito from "./componentesVentas/Carrito";
 import { useEffect } from "react";
 import type {ItemCarrito} from './types/ItemCarrito'
+import Layout from "./layouts/Layout";
 
 export default function Ventas(){
     //estados
@@ -111,11 +112,14 @@ const eliminarDelCarrito = (id: number) => {
     );
 };
 
-    return <div>
+    return (
+    <Layout>
+    <div>
      <Header
     appName="Sistema de Inventario"
     titulo="Ventas"
 />
+
         <Buscador search={search}
     setSearch={setSearch}></Buscador>
 
@@ -142,6 +146,6 @@ const eliminarDelCarrito = (id: number) => {
 
     </div>
 
-    
+    </Layout>);
         
 }

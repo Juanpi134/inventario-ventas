@@ -4,6 +4,8 @@ import { useState,useEffect } from "react";
 import TablaVentas from './componentesHistorialVentas/TablaVentas';
 import type { Venta } from "./types/Venta";
 import DetalleVentaModal from "./componentesHistorialVentas/DetalleVentaModal";
+import Layout from "./layouts/Layout";
+
 export function Historial(){
 
     const [search, setSearch] = useState("");
@@ -21,7 +23,11 @@ export function Historial(){
         v.fecha.toLowerCase().includes(search.toLowerCase())
     );
 
-    return <div>
+    return 
+(
+    <Layout>
+
+<div>
         <Header
         appName="Sistema de Inventario"
         titulo="Historial de Ventas"
@@ -39,4 +45,6 @@ export function Historial(){
     onClose={() => setVentaSeleccionada(null)}
     />
     </div>
+    </Layout>
+)
 }
