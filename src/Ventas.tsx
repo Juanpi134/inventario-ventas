@@ -3,6 +3,7 @@ import Buscador from "./componentesVentas/Buscador";
 import TablaProductosVenta from "./componentesVentas/TablaProductosVentas";
 import { useState } from "react";
 import type {Producto} from './types/Producto'
+import Carrito from "./componentesVentas/Carrito";
 export default function Ventas(){
     //estados
     const [search, setSearch] = useState("");
@@ -23,6 +24,7 @@ export default function Ventas(){
     ]);
 
 
+    const [carrito, setCarrito] = useState<Producto[]>([]);
 
     const productosFiltrados = productos.filter((p) =>
         p.nombre.toLowerCase().includes(search.toLowerCase())
@@ -30,7 +32,7 @@ export default function Ventas(){
 
     const agregarAlCarrito = (producto:Producto) => {
 
-        console.log(producto);
+        setCarrito([...carrito, producto]);
 
     };
 
@@ -44,6 +46,8 @@ export default function Ventas(){
 
 <TablaProductosVenta productos={productosFiltrados}
                 onAgregar={agregarAlCarrito}/>
+
+                <Carrito carrito={carrito} />
 
     </div>
 
