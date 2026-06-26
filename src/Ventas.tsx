@@ -4,6 +4,7 @@ import TablaProductosVenta from "./componentesVentas/TablaProductosVentas";
 import { useState } from "react";
 import type {Producto} from './types/Producto'
 import Carrito from "./componentesVentas/Carrito";
+import { useEffect } from "react";
 export default function Ventas(){
     //estados
     const [search, setSearch] = useState("");
@@ -48,6 +49,19 @@ export default function Ventas(){
     // vaciar carrito
     setCarrito([]);
 };
+
+
+useEffect(() => {
+
+    if (ventaConfirmada) {
+        const timer = setTimeout(() => {
+            setVentaConfirmada(false);
+        }, 2000);
+
+        return () => clearTimeout(timer);
+    }
+
+}, [ventaConfirmada]);
 
 
     return <div>
