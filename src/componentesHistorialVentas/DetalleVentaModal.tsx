@@ -1,4 +1,6 @@
 import type { Venta } from "../types/Venta";
+import './modal.css';
+
 
 type Props = {
     venta: Venta | null;
